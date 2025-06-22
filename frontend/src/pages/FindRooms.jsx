@@ -15,8 +15,8 @@ const FindRooms = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(true);
     const fetchRooms = async () => {
-      setLoading(true);
       try {
         const response = await axios.get(`${API_URL}/rooms/availableRoom`, {
           withCredentials: true,
