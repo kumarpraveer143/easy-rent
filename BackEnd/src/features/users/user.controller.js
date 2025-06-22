@@ -142,7 +142,7 @@ export default class UserController {
     const { email } = req.body;
     try {
       const user = await this.userRepository.findUserByEmail({ email }, true);
-
+      
       if (!user) {
         return res
           .status(400)
