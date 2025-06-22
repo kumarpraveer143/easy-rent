@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HashLoader } from "react-spinners";
-import { FaUserCircle } from "react-icons/fa"; // Import user icon
+import { FaUserCircle } from "react-icons/fa";
 import { API_URL } from "../../config";
 
 const Navbar = () => {
@@ -24,7 +24,7 @@ const Navbar = () => {
     try {
       const response = await fetch(`${API_URL}/users/logout`, {
         method: "POST",
-        credentials: "include", // Include credentials to handle cookies
+        credentials: "include",
       });
 
       if (response.ok) {
@@ -40,40 +40,28 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-800 text-white relative">
-      <div className="container mx-auto flex items-center justify-between p-4">
+    <nav className="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-4">
         {/* Logo */}
-        <div className="text-2xl font-bold">
+        <div className="text-2xl font-extrabold">
           <button
             onClick={() => handleNavigation("/")}
-            className="focus:outline-none"
+            className="focus:outline-none hover:text-blue-200 transition duration-200"
           >
-            Renters
+            EastRent
           </button>
         </div>
 
         {/* Center Links */}
         <div className="hidden md:flex items-center space-x-6">
           <Link
-            className="hover:text-gray-400"
-            onClick={() => handleNavigation("/")}
-          >
-            Home
-          </Link>
-          <Link
-            className="hover:text-gray-400"
+            className="text-white hover:text-blue-200 transition duration-200 font-medium"
             onClick={() => handleNavigation("/about")}
           >
             About
           </Link>
           <Link
-            className="hover:text-gray-400"
-            onClick={() => handleNavigation("/developer")}
-          >
-            Developer
-          </Link>
-          <Link
-            className="hover:text-gray-400"
+            className="text-white hover:text-blue-200 transition duration-200 font-medium"
             onClick={() => handleNavigation("/contact")}
           >
             Contact
@@ -85,10 +73,10 @@ const Navbar = () => {
           {user ? (
             <>
               {/* Profile Section */}
-              <div className="flex items-center space-x-2 md:mr-6">
-                <FaUserCircle size={24} className="text-gray-400" />
+              <div className="flex items-center space-x-2">
+                <FaUserCircle size={24} className="text-blue-200" />
                 <Link
-                  className="text-gray-200 cursor-pointer"
+                  className="text-blue-100 hover:text-white font-medium"
                   onClick={() => handleNavigation("/dashboard")}
                 >
                   Dashboard
@@ -96,7 +84,7 @@ const Navbar = () => {
               </div>
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded"
+                className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-medium rounded-md shadow-md transition duration-200"
               >
                 Logout
               </button>
@@ -104,13 +92,13 @@ const Navbar = () => {
           ) : (
             <>
               <Link
-                className="px-4 py-2 bg-[#526D82] hover:bg-[#9DB2BF] text-[#DDE6ED] rounded"
+                className="px-4 py-2 bg-white text-blue-600 font-medium rounded-full shadow-md hover:bg-blue-50 transition duration-200"
                 onClick={() => handleNavigation("/signup")}
               >
                 Sign Up
               </Link>
               <Link
-                className="px-4 py-2 border border-white hover:bg-gray-700 rounded"
+                className="px-4 py-2 border border-white text-white font-medium rounded-full hover:bg-blue-700 hover:bg-opacity-70 transition duration-200"
                 onClick={() => handleNavigation("/login")}
               >
                 Log In
@@ -122,7 +110,7 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-gray-400 hover:text-white focus:outline-none"
+          className="md:hidden text-blue-200 hover:text-white focus:outline-none"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -143,54 +131,44 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-gray-700">
+        <div className="md:hidden bg-gradient-to-b from-blue-600 to-purple-600">
           <Link
             onClick={() => handleNavigation("/")}
-            className="block px-4 py-2 hover:bg-gray-600 text-center"
+            className="block px-4 py-3 text-white hover:bg-blue-700 text-center font-medium"
           >
             Home
           </Link>
           <Link
             onClick={() => handleNavigation("/about")}
-            className="block px-4 py-2 hover:bg-gray-600 text-center"
+            className="block px-4 py-3 text-white hover:bg-blue-700 text-center font-medium"
           >
             About
           </Link>
           <Link
-            onClick={() => handleNavigation("/developer")}
-            className="block px-4 py-2 hover:bg-gray-600 text-center"
-          >
-            Developer
-          </Link>
-          <Link
             onClick={() => handleNavigation("/contact")}
-            className="block px-4 py-2 hover:bg-gray-600 text-center"
+            className="block px-4 py-3 text-white hover:bg-blue-700 text-center font-medium"
           >
             Contact
           </Link>
-          {JSON.parse(user)?.userType === "renter" ? (
-            <>
-              <Link
-                onClick={() => handleNavigation("/findrooms")}
-                className="block px-4 py-2 hover:bg-gray-600 text-center"
-              >
-                Rooms
-              </Link>
-            </>
-          ) : (
-            <></>
+          {JSON.parse(user)?.userType === "renter" && (
+            <Link
+              onClick={() => handleNavigation("/findrooms")}
+              className="block px-4 py-3 text-white hover:bg-blue-700 text-center font-medium"
+            >
+              Rooms
+            </Link>
           )}
-
           {user ? (
             <>
-              <div className="block px-4 py-2 hover:bg-gray-600 text-center">
-                <Link onClick={() => handleNavigation("/dashboard")}>
-                  Dashboard
-                </Link>
-              </div>
+              <Link
+                onClick={() => handleNavigation("/dashboard")}
+                className="block px-4 py-3 text-white hover:bg-blue-700 text-center font-medium"
+              >
+                Dashboard
+              </Link>
               <button
                 onClick={handleLogout}
-                className="block w-full px-4 py-2 bg-red-500 hover:bg-red-600 text-center text-white rounded"
+                className="block w-full px-4 py-3 bg-red-500 hover:bg-red-600 text-white text-center font-medium"
               >
                 Logout
               </button>
@@ -199,13 +177,13 @@ const Navbar = () => {
             <>
               <Link
                 onClick={() => handleNavigation("/signup")}
-                className="block px-4 py-2 bg-[#526D82] hover:bg-[#9DB2BF] text-center text-[#DDE6ED] rounded"
+                className="block px-4 py-3 bg-white text-blue-600 text-center font-medium hover:bg-blue-50"
               >
                 Sign Up
               </Link>
               <Link
                 onClick={() => handleNavigation("/login")}
-                className="block px-4 py-2 border border-gray-400 text-center hover:bg-gray-600 rounded"
+                className="block px-4 py-3 text-white border-t border-blue-500 text-center font-medium hover:bg-blue-700"
               >
                 Log In
               </Link>
@@ -216,8 +194,8 @@ const Navbar = () => {
 
       {/* Full-Screen Overlay Loader */}
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 h-screen">
-          <HashLoader color="#fff" loading={loading} size={50} />
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50 h-screen">
+          <HashLoader color="#ffffff" loading={loading} size={50} />
         </div>
       )}
     </nav>
