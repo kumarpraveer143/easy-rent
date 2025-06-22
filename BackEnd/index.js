@@ -15,7 +15,7 @@ dotenv.config();
 
 const app = express();
 const corsOptions = {
-  origin: ["https://easyrenters.vercel.app", "http://localhost:5173"],
+  origin: ["https://easyrenters.vercel.app", "http://localhost:5173","https://easy-rent-h3ze.onrender.com"],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
