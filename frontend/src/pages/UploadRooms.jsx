@@ -113,7 +113,6 @@ const UploadRooms = () => {
         withCredentials: true,
       });
       // console.log("Response:", response.data); // Handle the response
-
       toast.success("Room Registered Successfully");
       navigate("/dashboard");
     } catch (err) {

@@ -1,7 +1,4 @@
 import mongoose from "mongoose";
-import mongooseSequence from "mongoose-sequence";
-
-const AutoIncrement = mongooseSequence(mongoose);
 
 const RoomSchema = new mongoose.Schema(
   {

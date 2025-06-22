@@ -14,8 +14,6 @@ const LandOwnerRooms = () => {
   const [editingRoom, setEditingRoom] = useState(null);
   const navigate = useNavigate();
 
-
-
   useEffect(() => {
     setLoading(true);
     const fetchRooms = async () => {
@@ -75,7 +73,11 @@ const LandOwnerRooms = () => {
   };
 
   const handleDeleteClick = async (roomId) => {
-    const response = await axios.post(`${API_URL}/relationship/relationByRoomId`, { roomId }, { withCredentials: true })
+    const response = await axios.post(
+      `${API_URL}/relationship/relationByRoomId`,
+      { roomId },
+      { withCredentials: true }
+    );
     if (response.data.message) {
       toast.error("There is someone in the room, so you can't delete it!");
       return;
@@ -179,7 +181,7 @@ const LandOwnerRooms = () => {
         >
           <div className="p-5">
             <div className="font-semibold text-red-800 text-xl">
-              Room Number : {room.roomNumber}
+              Room Number: {room.roomNumber ? room.roomNumber : "N/A"}
             </div>
             <h3 className="text font-semibold text-gray-800 mt-4">
               Room Type: {room.roomType}
