@@ -79,6 +79,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/developer" element={<Developer />} />
+              <Route path="/findrooms" element={<FindRooms />} />
 
             <Route path="/reset/:token" element={<Reset />} />
             <Route path="/forget-password" element={<ForgotPassword />} />
@@ -87,7 +88,6 @@ const App = () => {
             <Route element={<UnauthenticatedRoute />}>
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/findrooms" element={<FindRooms />} />
             </Route>
 
             {/* <Route element={<AuthenticatedUser />}> */}
