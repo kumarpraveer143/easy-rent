@@ -57,7 +57,7 @@ const FindRooms = () => {
     return <Loading />;
   }
 
-  if (rooms.length === 0) {
+  if (!loading && filteredRooms.length === 0) {
     return <NoRoomsFound />;
   }
 
