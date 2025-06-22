@@ -13,8 +13,8 @@ const LandOwnerRooms = React.lazy(() =>
   import("./pages/landownerPages/LandOwnerRooms")
 );
 const FavouriteRoom = React.lazy(() => import("./pages/FavouriteRoom"));
+import Home from "./pages/Home";
 // Lazy load pages
-const Home = React.lazy(() => import("./pages/Home"));
 const About = React.lazy(() => import("./pages/About"));
 const Contact = React.lazy(() => import("./pages/Contact"));
 const Login = React.lazy(() => import("./pages/Login"));

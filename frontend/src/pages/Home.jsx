@@ -1,268 +1,319 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
+
+import React, { useState } from 'react';
+import HomeImage from "../../public/images/homeImage.png"
 
 const Home = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [activeTab, setActiveTab] = useState('landlords');
+  const [activeQuestion, setActiveQuestion] = useState(null);
 
-  const toggleAccordion = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
+  const toggleQuestion = (index) => {
+    setActiveQuestion(activeQuestion === index ? null : index);
   };
 
   const faqs = [
     {
-      question: "How do I register?",
-      answer:
-        "To register, simply click on the 'Sign Up' button on our homepage. Fill in your details and verify your email. Once completed, you can start listing or searching for rooms.",
+      question: "How do I list my property?",
+      answer: "Simply create an account, click on 'List Property', and follow the step-by-step guide to showcase your space to potential tenants."
     },
     {
-      question: "What payment methods available?",
-      answer:
-        "We accept various payment methods, including credit cards and bank transfers. All transactions are securely processed through our integrated payment system. You can easily manage your payment preferences in your account settings.",
+      question: "Is there a fee for listing my property?",
+      answer: "Basic listings are free. Premium features are available for a small fee to boost visibility and attract more potential tenants."
     },
     {
-      question: "How to search rooms?",
-      answer:
-        "You can search for rooms by entering your desired pin code or using the Google Maps interface. Filter results based on your preferences like price, location, and amenities. This makes finding the perfect room quick and easy.",
-    },
-
-    {
-      question: "Can I communicate directly?",
-      answer:
-        "Yes, our platform enables seamless communication between landlords and tenants. You will receive notifications and reminders for important updates. This ensures that both parties stay informed throughout the rental process.",
+      question: "How do I search for rooms?",
+      answer: "Use our search bar to filter by location, price range, amenities, and more. You can search by pin code or use our interactive map feature."
     },
     {
-      question: "Is there a history log?",
-      answer:
-        "Absolutely! Our service includes a history management feature for both landlords and tenants. You can easily access records of past communications and transactions for your reference.",
+      question: "Are payments secure?",
+      answer: "Yes, all transactions are processed through our secure payment gateway with encryption and fraud protection measures in place."
     },
+    {
+      question: "Can I schedule a viewing before renting?",
+      answer: "Absolutely! You can request viewings directly through our platform and coordinate with property owners for a convenient time."
+    }
   ];
+
   return (
-    <div>
-      <section className="text-gray-700 body-font">
-        <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-              Your Search for the &nbsp;
-              <br className="hidden lg:inline-block" />
-              Perfect Rental Ends Here.
-            </h1>
-            <p className="mb-8 leading-relaxed">
-              Welcome to our platform where landowners and tenants connect
-              effortlessly. Explore available rooms or list your property today
-              for a seamless renting experience.
-            </p>
-            <div className="flex justify-center">
-              <button className="inline-flex text-white bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                Search Rooms
-              </button>
+    <div className="font-sans bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+      {/* Hero Section */}
+      <section id="home" className="relative bg-gradient-to-r from-blue-600 to-purple-600 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:flex lg:items-center lg:justify-between">
+            <div className="lg:w-1/2">
+              <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
+                <span className="block">Find Your Perfect Rental</span>
+                <span className="block text-blue-200">with Ease</span>
+              </h1>
+              <p className="mt-3 max-w-md text-lg text-blue-100 sm:text-xl md:mt-5 md:max-w-3xl">
+                Connect with landowners or tenants effortlessly. List your property or discover your dream room today.
+              </p>
+              <div className="mt-10 sm:flex">
+                <div className="rounded-md shadow">
+                  <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 md:py-4 md:text-lg md:px-10">
+                    List Property
+                  </a>
+                </div>
+                <div className="mt-3 sm:mt-0 sm:ml-3">
+                  <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 bg-opacity-60 hover:bg-opacity-70 md:py-4 md:text-lg md:px-10">
+                    Find Rooms
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="mt-12 lg:mt-0 lg:w-1/2">
+              <div>
+                <div className="w-full h-64 flex items-center justify-center">
+                  <img className="sm:w-[30rem] md:w-[30rem] mt-10" src={HomeImage} alt="" />
+                </div>
+              </div>
             </div>
           </div>
-          <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-            <img
-              className="object-cover object-center rounded"
-              alt="rent"
-              src="images/rent.jpg"
-            />
-          </div>
+        </div>
+        <div className="absolute top-[22rem] left-0 right-0 hidden lg:inline ">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#ffffff" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,133.3C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
         </div>
       </section>
 
-      <section className="text-gray-700 body-font border-t border-gray-200">
-        <div className="container px-5 py-10 md:py-24 mx-auto">
-          <div className="flex flex-col text-center w-full mb-20">
-            <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">
-              Connect
+      {/* About Section */}
+      <section id="about" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              Discover
             </h2>
-            <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
-              Discover Your Perfect Room Effortlessly
-            </h1>
-            <p className="leading-relaxed mt-3 text-gray-500 text-sm">
-              Our platform simplifies the process of finding and renting rooms.
-              With user-friendly features, you can easily upload room details or
-              search for available options in your area.
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-blue-600 sm:text-4xl">
+              Your Path to Effortless Renting
+            </p>
+            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+              Simplify your rental journey with our intuitive platform. Upload room details or find the perfect space with ease.
             </p>
           </div>
-          <div className="flex flex-wrap -m-4">
-            <div className="p-4 md:w-1/3">
-              <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                <div className="mb-3">
-                  <img
-                    src="images/room1.jpg"
-                    alt="Room Image"
-                    className="w-full h-48 object-cover rounded-t-lg"
-                  />
-                </div>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 text-lg title-font font-medium mb-3 text-center">
-                    Effortless Room Uploads for Landowners
-                  </h2>
-                  <p className="leading-relaxed text-base text-center">
-                    Landowners can quickly upload room details and images,
-                    making it easy to showcase their spaces.
-                  </p>
-                </div>
-              </div>
-            </div>
 
-            <div className="p-4 md:w-1/3">
-              <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                <div className="mb-3">
-                  <img
-                    src="images/direction.jpg"
-                    alt="Room Image"
-                    className="w-full h-48 object-cover rounded-t-lg"
-                  />
-                </div>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 text-lg title-font font-medium mb-3 text-center">
-                    Advanced Search Options for Tenants
-                  </h2>
-                  <p className="leading-relaxed text-base text-center">
-                    Tenants can search for rooms using pin codes or Google Maps
-                    for convenience.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-4 md:w-1/3">
-              <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                <div className="mb-3">
-                  <img
-                    src="images/payment.jpg"
-                    alt="Room Image"
-                    className="w-full h-48 object-cover rounded-t-lg"
-                  />
-                </div>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 text-lg title-font font-medium mb-3 text-center">
-                    Secure Integrated Payment System
-                  </h2>
-                  <p className="leading-relaxed text-base text-center">
-                    Our platform ensures secure transactions with an integrated
-                    payment system.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="text-gray-700 body-font border-t border-gray-200">
-        <div className="container px-5 md:py-24 mx-auto flex flex-wrap">
-          <div className="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
-            <img
-              alt="feature"
-              className="object-cover object-center h-full w-full"
-              src="/images/tolet3.png"
-            />
-          </div>
-          <div className="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left justify-center">
-            <div className="flex flex-col mb-10 lg:items-start items-center ">
-              <div className="flex-grow">
-                <h2 className="text-gray-900 text-3xl title-font font-medium mb-3">
-                  No More to Let – The Future of Property Rentals
-                </h2>
-                <p className="leading-relaxed text-base mb-5">
-                  Our platform is designed to ensure that your properties never
-                  stay vacant for long. With streamlined application processes,
-                  smart tenant matching, and a trusted network, we make renting
-                  effortless for both landlords and tenants.
-                </p>
-
-                {/* For Landlords Section */}
-                <h3 className="text-gray-900 text-lg font-medium mb-3">
-                  For Landlords
-                </h3>
-                <ul className="leading-relaxed text-base list-disc pl-5 mb-5">
-                  <li>
-                    Post your listings and watch them fill faster than ever.
-                  </li>
-                  <li>
-                    Enjoy a hassle-free experience with verified tenants and
-                    optimized marketing tools.
-                  </li>
-                </ul>
-
-                {/* For Renters Section */}
-                <h3 className="text-gray-900 text-lg font-medium mb-3">
-                  For Renters
-                </h3>
-                <ul className="leading-relaxed text-base list-disc pl-5 mb-5">
-                  <li>Find your perfect home in no time.</li>
-                  <li>
-                    With trusted listings and an easy application process, your
-                    next move is just a click away.
-                  </li>
-                </ul>
-
-                <p className="leading-relaxed text-base mb-5">
-                  With 'No More to Let,' we’re redefining the rental market by
-                  connecting properties and people, effortlessly.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mb-6">
-        <div className="mx-auto px-4 py-8 container">
-          <h2 className="text-xl font-semibold text-gray-800 mb-6">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="bg-white shadow-md rounded-lg overflow-hidden"
-              >
-                <button
-                  className="w-full text-left p-4 flex items-center justify-between text-lg font-medium text-gray-800 bg-gray-100 rounded-t-lg focus:outline-none"
-                  onClick={() => toggleAccordion(index)}
-                >
-                  <span>{faq.question}</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    className={`w-6 h-6 transform transition-transform duration-300 ${
-                      openIndex === index ? "rotate-45" : ""
-                    }`}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
+          <div className="mt-16">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="h-12 w-12 rounded-md bg-blue-500 flex items-center justify-center">
+                  <svg className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                   </svg>
-                </button>
-                <div
-                  className={`transition-max-height duration-500 ease-in-out overflow-hidden ${
-                    openIndex === index ? "max-h-96" : "max-h-0"
-                  }`}
-                >
-                  <div className="p-4 text-gray-700 bg-gray-50">
-                    {faq.answer}
+                </div>
+                <h3 className="mt-5 text-lg leading-6 font-medium text-gray-900">Effortless Room Uploads</h3>
+                <p className="mt-2 text-base text-gray-600">
+                  Landowners can showcase their spaces quickly with our easy-to-use upload tools.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="h-12 w-12 rounded-md bg-purple-500 flex items-center justify-center">
+                  <svg className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                <h3 className="mt-5 text-lg leading-6 font-medium text-gray-900">Advanced Search Options</h3>
+                <p className="mt-2 text-base text-gray-600">
+                  Tenants can find rooms using pin codes or Google Maps for ultimate convenience.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="h-12 w-12 rounded-md bg-blue-600 flex items-center justify-center">
+                  <svg className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="mt-5 text-lg leading-6 font-medium text-gray-900">Secure Payments</h3>
+                <p className="mt-2 text-base text-gray-600">
+                  Enjoy peace of mind with our secure, integrated payment system.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Use Renters Section */}
+      <section id="why-us" className="py-16 bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold sm:text-4xl">
+              Redefining Property Rentals
+            </h2>
+            <p className="mt-4 max-w-2xl text-xl lg:mx-auto">
+              Say goodbye to vacant properties. Our platform connects landlords and tenants seamlessly with smart matching and streamlined processes.
+            </p>
+          </div>
+
+          <div className="mt-16">
+            <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl p-8 shadow-xl">
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-1/2 mb-8 md:mb-0">
+                  <div className="flex justify-center md:justify-start">
+                    <div className="inline-flex rounded-md shadow">
+                      <button
+                        onClick={() => setActiveTab('landlords')}
+                        className={`px-6 py-3 text-base font-medium rounded-l-md ${
+                          activeTab === 'landlords'
+                            ? 'bg-white text-blue-600'
+                            : 'bg-blue-600 bg-opacity-70 text-white hover:bg-opacity-80'
+                        }`}
+                      >
+                        For Landlords
+                      </button>
+                      <button
+                        onClick={() => setActiveTab('renters')}
+                        className={`px-6 py-3 text-base font-medium rounded-r-md ${
+                          activeTab === 'renters'
+                            ? 'bg-white text-blue-600'
+                            : 'bg-blue-600 bg-opacity-70 text-white hover:bg-opacity-80'
+                        }`}
+                      >
+                        For Renters
+                      </button>
+                    </div>
                   </div>
                 </div>
+                <div className="md:w-1/2">
+                  {activeTab === 'landlords' ? (
+                    <div className="space-y-4">
+                      <div className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-6 w-6 text-blue-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <p className="ml-3 text-lg">Fill your listings quickly with optimized marketing tools.</p>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-6 w-6 text-blue-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <p className="ml-3 text-lg">Connect with verified tenants for a hassle-free experience.</p>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-6 w-6 text-blue-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <p className="ml-3 text-lg">Manage your properties efficiently with our dashboard tools.</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      <div className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-6 w-6 text-blue-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <p className="ml-3 text-lg">Discover your ideal home with ease.</p>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-6 w-6 text-blue-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <p className="ml-3 text-lg">Apply effortlessly with our trusted, user-friendly platform.</p>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-6 w-6 text-blue-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <p className="ml-3 text-lg">Get instant notifications for properties matching your criteria.</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
-        <div className="flex flex-col items-center space-y-4 mt-8 mb-14">
-          <h2 className="text-xl font-semibold text-gray-800">
-            Still Have Questions?
-          </h2>
-          <Link
-            to="/contact"
-            className="bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-6 rounded shadow"
-          >
-            Contact Us
-          </Link>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              Frequently Asked Questions
+            </h2>
+            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+              Find answers to common questions about our rental platform.
+            </p>
+          </div>
+
+          <div className="mt-12">
+            <div className="space-y-6 max-w-3xl mx-auto">
+              {faqs.map((faq, index) => (
+                <div key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg shadow-md">
+                  <button
+                    onClick={() => toggleQuestion(index)}
+                    className="w-full px-6 py-4 text-left focus:outline-none flex justify-between items-center"
+                  >
+                    <span className="text-lg font-medium text-gray-900">{faq.question}</span>
+                    <svg
+                      className={`h-5 w-5 text-blue-500 transform ${activeQuestion === index ? 'rotate-180' : ''}`}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                  {activeQuestion === index && (
+                    <div className="px-6 pb-4">
+                      <p className="text-gray-600">{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
+              Ready to Find Your Perfect Rental?
+            </h2>
+            <p className="mt-4 text-xl text-blue-100">
+              Join thousands of satisfied landlords and tenants on our platform.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <div className="inline-flex rounded-md shadow">
+                <a
+                  href="#"
+                  className="px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50"
+                >
+                  Get Started
+                </a>
+              </div>
+              <div className="ml-3 inline-flex">
+                <a
+                  href="#"
+                  className="px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-800 bg-opacity-60 hover:bg-opacity-70"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

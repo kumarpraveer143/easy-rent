@@ -54,73 +54,102 @@ const FindRooms = () => {
   }
 
   return (
-    <div className="p-4 max-w-7xl mx-auto">
-      <h1 className="text-2xl font-bold text-center mb-6">Find Rooms</h1>
-
-      {/* Search Field */}
-      <div className="flex items-center mb-6">
-        <input
-          type="text"
-          placeholder="Search by ZIP code..."
-          value={searchZip}
-          onChange={handleSearch}
-          className="w-full p-3 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-gray-500"
-        />
-        <button className="bg-gray-800 text-white p-3 rounded-r-md">
-          <FiSearch className="text-lg" />
-        </button>
-      </div>
-
-      {/* Room Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {filteredRooms.slice(0, limit).map((room) => (
-          <div
-            key={room._id}
-            className="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition-shadow duration-200"
-          >
-            <img
-              src={room.photos?.[0] || "https://via.placeholder.com/150"}
-              alt="Room"
-              className="w-full h-40 object-cover"
-            />
-            <div className="p-4">
-              <h2 className="text-lg font-bold text-gray-800 mb-2">
-                {room.roomType} - ₹{room.rentPrice}/month
-              </h2>
-              <p className="text-gray-600 text-sm mb-2">
-                {room.address.street}, {room.address.city}, {room.address.state}
-                , {room.address.zipCode}
-              </p>
-              <p className="text-sm font-semibold">
-                Status:{" "}
-                {room.isAvailable ? (
-                  <span className="text-green-500">Available</span>
-                ) : (
-                  <span className="text-red-500">Not Available</span>
-                )}
-              </p>
-              <button
-                onClick={() => handleViewRoom(room._id)}
-                className="mt-4 bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-600"
-              >
-                View Room
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Load More Button */}
-      {limit < filteredRooms.length && (
-        <div className="mt-6 text-center">
-          <button
-            onClick={handleLoadMore}
-            className="bg-gray-800 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"
-          >
-            Load More
-          </button>
+    <div className="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+            Find Your Perfect Room
+          </h1>
+          <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+            Browse through our collection of available rooms and find your ideal living space.
+          </p>
         </div>
-      )}
+
+        <div className="max-w-3xl mx-auto mb-10">
+          <div className="flex items-center bg-white rounded-lg shadow-md overflow-hidden">
+            <input
+              type="text"
+              placeholder="Search by ZIP code..."
+              value={searchZip}
+              onChange={handleSearch}
+              className="w-full p-4 border-none focus:outline-none focus:ring-0"
+            />
+            <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
+              <FiSearch className="text-xl" />
+            </button>
+          </div>
+        </div>
+
+        {filteredRooms.length > 0 ? (
+          <>
+            <div className="m-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {filteredRooms.slice(0, limit).map((room) => (
+                <div
+                  key={room._id}
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="relative">
+                    <img
+                      src={room.photos?.[0] || "https://via.placeholder.com/150"}
+                      alt="Room"
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="absolute top-0 right-0 bg-gradient-to-l from-blue-600 to-purple-600 text-white px-3 py-1 rounded-bl-lg font-medium">
+                      ₹{room.rentPrice}/month
+                    </div>
+                  </div>
+                  <div className="p-5">
+                    <div className="flex justify-between items-start mb-2">
+                      <h2 className="text-xl font-bold text-gray-800">
+                        {room.roomType}
+                      </h2>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${room.isAvailable ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                        {room.isAvailable ? 'Available' : 'Not Available'}
+                      </span>
+                    </div>
+                    <p className="text-gray-600 text-sm mb-4">
+                      {room.address.street}, {room.address.city}, {room.address.state}, {room.address.zipCode}
+                    </p>
+                    <button
+                      onClick={() => handleViewRoom(room._id)}
+                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 px-4 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium"
+                    >
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {limit < filteredRooms.length && (
+              <div className="mt-10 text-center">
+                <button
+                  onClick={handleLoadMore}
+                  className="bg-white text-blue-600 border border-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 transition-colors duration-300"
+                >
+                  Load More Rooms
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto text-center">
+            <svg className="w-16 h-16 text-blue-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">No Rooms Found</h2>
+            <p className="text-gray-600 mb-6">
+              We couldn't find any rooms matching your search criteria. Please try a different ZIP code or check back later.
+            </p>
+            <button
+              onClick={() => setSearchZip("")}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
+            >
+              Clear Search
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
