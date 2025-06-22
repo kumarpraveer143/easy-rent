@@ -87,12 +87,12 @@ const App = () => {
             <Route element={<UnauthenticatedRoute />}>
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/findrooms" element={<FindRooms />} />
             </Route>
 
             {/* <Route element={<AuthenticatedUser />}> */}
             {/* Routes for only Renters */}
             <Route element={<RentersAuth />}>
-              <Route path="/findrooms" element={<FindRooms />} />
               <Route path="/rentersMyRoom" element={<RenterMyRoom />} />
               <Route
                 path="/viewRoomsDetails/:id"

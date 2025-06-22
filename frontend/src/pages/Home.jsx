@@ -2,10 +2,13 @@
 
 import React, { useState } from 'react';
 import HomeImage from "../../public/images/homeImage.png"
+import {Link} from"react-router-dom"
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState('landlords');
   const [activeQuestion, setActiveQuestion] = useState(null);
+  const navigate = useNavigate();
 
   const toggleQuestion = (index) => {
     setActiveQuestion(activeQuestion === index ? null : index);
@@ -50,14 +53,14 @@ const Home = () => {
               </p>
               <div className="mt-10 sm:flex">
                 <div className="rounded-md shadow">
-                  <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 md:py-4 md:text-lg md:px-10">
+                  <Link to="/findRooms" className="z-1000 w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 md:py-4 md:text-lg md:px-10 ">
                     List Property
-                  </a>
+                  </Link>
                 </div>
                 <div className="mt-3 sm:mt-0 sm:ml-3">
-                  <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 bg-opacity-60 hover:bg-opacity-70 md:py-4 md:text-lg md:px-10">
+                  <Link to ="/findRooms" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 bg-opacity-60 hover:bg-opacity-70 md:py-4 md:text-lg md:px-10">
                     Find Rooms
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -69,11 +72,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="absolute top-[22rem] left-0 right-0 hidden lg:inline ">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#ffffff" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,133.3C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
         </div>
       </section>
 
