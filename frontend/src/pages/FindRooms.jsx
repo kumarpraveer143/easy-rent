@@ -4,16 +4,19 @@ import { FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import NoRoomsFound from "./NoRoomsFound";
 import { API_URL } from "../config";
+import Loading from "../components/UI/Loading";
 
 const FindRooms = () => {
   const [rooms, setRooms] = useState([]);
   const [filteredRooms, setFilteredRooms] = useState([]);
   const [searchZip, setSearchZip] = useState("");
   const [limit, setLimit] = useState(25); // Load 25 rooms initially
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRooms = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(`${API_URL}/rooms/availableRoom`, {
           withCredentials: true,
@@ -23,6 +26,7 @@ const FindRooms = () => {
       } catch (err) {
         console.error("Error fetching rooms:", err);
       }
+      setLoading(false);
     };
     fetchRooms();
   }, []);
@@ -49,9 +53,15 @@ const FindRooms = () => {
     navigate(`/viewRoomsDetails/${roomId}`); // Redirect to detailed room page
   };
 
+  if (loading) {
+    return <Loading />;
+  }
+
   if (rooms.length === 0) {
     return <NoRoomsFound />;
   }
+
+  const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <div className="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen py-12">
@@ -61,7 +71,8 @@ const FindRooms = () => {
             Find Your Perfect Room
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
-            Browse through our collection of available rooms and find your ideal living space.
+            Browse through our collection of available rooms and find your ideal
+            living space.
           </p>
         </div>
 
@@ -90,7 +101,9 @@ const FindRooms = () => {
                 >
                   <div className="relative">
                     <img
-                      src={room.photos?.[0] || "https://via.placeholder.com/150"}
+                      src={
+                        room.photos?.[0] || "https://via.placeholder.com/150"
+                      }
                       alt="Room"
                       className="w-full h-48 object-cover"
                     />
@@ -103,24 +116,40 @@ const FindRooms = () => {
                       <h2 className="text-xl font-bold text-gray-800">
                         {room.roomType}
                       </h2>
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${room.isAvailable ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                        {room.isAvailable ? 'Available' : 'Not Available'}
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          room.isAvailable
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
+                      >
+                        {room.isAvailable ? "Available" : "Not Available"}
                       </span>
                     </div>
                     <p className="text-gray-600 text-sm mb-4">
-                      {room.address.street}, {room.address.city}, {room.address.state}, {room.address.zipCode}
+                      {room.address.street}, {room.address.city},{" "}
+                      {room.address.state}, {room.address.zipCode}
                     </p>
-                    <button
-                      onClick={() => handleViewRoom(room._id)}
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 px-4 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium"
-                    >
-                      View Details
-                    </button>
+                    {user ? (
+                      <button
+                        onClick={() => handleViewRoom(room._id)}
+                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 px-4 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium"
+                      >
+                        View Details
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => navigate("/login")}
+                        className="w-full bg-gray-200 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-300 transition-all duration-300 font-medium"
+                      >
+                        Login to View Room
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}
             </div>
-            
+
             {limit < filteredRooms.length && (
               <div className="mt-10 text-center">
                 <button
@@ -134,12 +163,26 @@ const FindRooms = () => {
           </>
         ) : (
           <div className="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto text-center">
-            <svg className="w-16 h-16 text-blue-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <svg
+              className="w-16 h-16 text-blue-500 mx-auto mb-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             </svg>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">No Rooms Found</h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              No Rooms Found
+            </h2>
             <p className="text-gray-600 mb-6">
-              We couldn't find any rooms matching your search criteria. Please try a different ZIP code or check back later.
+              We couldn't find any rooms matching your search criteria. Please
+              try a different ZIP code or check back later.
             </p>
             <button
               onClick={() => setSearchZip("")}

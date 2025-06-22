@@ -56,9 +56,7 @@ const RenterMyRoom = React.lazy(() =>
 const PaymentHistory = React.lazy(() =>
   import("./pages/landownerPages/PaymentHistory")
 );
-const MyRenters = React.lazy(() =>
-  import("./pages/landownerPages/MyRenters")
-);
+const MyRenters = React.lazy(() => import("./pages/landownerPages/MyRenters"));
 
 const App = () => {
   return (
@@ -83,6 +81,7 @@ const App = () => {
 
             <Route path="/reset/:token" element={<Reset />} />
             <Route path="/forget-password" element={<ForgotPassword />} />
+            <Route path="/findrooms" element={<FindRooms />} />
 
             {/* Unauthorized Route */}
             <Route element={<UnauthenticatedRoute />}>

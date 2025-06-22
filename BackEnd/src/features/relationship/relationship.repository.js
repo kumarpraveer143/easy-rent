@@ -104,7 +104,9 @@ class RelationshipSchma {
     const isEngaged = await relationshipModel.findOne({
       renterId: userId,
     });
-
+    if (isEngaged == null) {
+      return false;
+    }
     if (isEngaged.status === "active") {
       return true;
     } else {

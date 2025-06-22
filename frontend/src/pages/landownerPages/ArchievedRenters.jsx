@@ -15,19 +15,23 @@ const ArchievedRenters = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(true);
-    const data = async () => {
-      let response = await axios.get(`${API_URL}/relationship/getRenters`, {
-        withCredentials: true,
-      });
-      // console.log(response.data.renters[0].renterStatus);
-      let activeRenters = response.data.renters.filter(
-        (item) => item.renterStatus === "archive"
-      );
-      setRenters(activeRenters);
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        let response = await axios.get(`${API_URL}/relationship/getRenters`, {
+          withCredentials: true,
+        });
+        let archivedRenters = response.data.renters.filter(
+          (item) => item.renterStatus === "archive"
+        );
+        setRenters(archivedRenters);
+      } catch (err) {
+        console.error("Error fetching renters:", err);
+      }
+      setLoading(false);
     };
-    data();
-    setLoading(false);
+
+    fetchData();
   }, []);
 
   const handleCheckHistory = (relationId) => {

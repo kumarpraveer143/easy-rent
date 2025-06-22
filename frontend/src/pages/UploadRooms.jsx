@@ -4,33 +4,49 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { API_URL } from "../config";
 
-
-
 const UploadRooms = () => {
   const navigate = useNavigate();
   const [districtData, setDistrictData] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [availableDistricts, setAvailableDistricts] = useState([]);
 
-
-
-
   useEffect(() => {
-    fetch('/utils/districtData.json')
+    fetch("/utils/districtData.json")
       .then((response) => response.json())
       .then((data) => setDistrictData(data.states))
-      .catch((error) => console.error('Error fetching the data:', error));
+      .catch((error) => console.error("Error fetching the data:", error));
   }, []);
 
   const indianStates = [
-    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
-    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
-    "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
-    "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
-    "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
   ];
-
-
 
   const [formData, setFormData] = useState({
     address: {
@@ -43,16 +59,18 @@ const UploadRooms = () => {
     roomType: "",
     numberOfRooms: "",
     numberOfBathrooms: "",
+    roomNumber: "",
     // photos: [],
     isAvailable: true,
   });
-
 
   const handleStateChange = (e) => {
     const selectedState = e.target.value;
     setSelectedState(selectedState);
 
-    const stateData = districtData.find(state => state.state === selectedState);
+    const stateData = districtData.find(
+      (state) => state.state === selectedState
+    );
     setAvailableDistricts(stateData ? stateData.districts : []);
   };
 
@@ -139,9 +157,13 @@ const UploadRooms = () => {
               }}
               className="mt-1 block w-full p-2 border rounded-md"
             >
-              <option value="" disabled>Select a state</option>
+              <option value="" disabled>
+                Select a state
+              </option>
               {indianStates.map((state) => (
-                <option key={state} value={state}>{state}</option>
+                <option key={state} value={state}>
+                  {state}
+                </option>
               ))}
             </select>
           </div>
@@ -154,9 +176,13 @@ const UploadRooms = () => {
               onChange={handleInputChange}
               className="mt-1 block w-full p-2 border rounded-md"
             >
-              <option value="" disabled>Select a district</option>
+              <option value="" disabled>
+                Select a district
+              </option>
               {availableDistricts.map((district, index) => (
-                <option key={index} value={district}>{district}</option>
+                <option key={index} value={district}>
+                  {district}
+                </option>
               ))}
             </select>
           </div>
@@ -212,6 +238,20 @@ const UploadRooms = () => {
             <option value="apartment">Apartment</option>
             <option value="house">House</option>
           </select>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium">
+            Room Number <span className="text-gray-500">(Optional)</span>
+          </label>
+          <input
+            type="text"
+            name="roomNumber"
+            value={formData.roomNumber}
+            onChange={handleInputChange}
+            className="mt-1 block w-full p-2 border rounded-md"
+            placeholder="E.g. 101, A1, B2 etc."
+          />
         </div>
 
         <div>
