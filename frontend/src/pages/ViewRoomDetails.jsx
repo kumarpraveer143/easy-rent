@@ -15,6 +15,15 @@ const ViewRoomDetails = () => {
   const [hasRequested, setHasRequested] = useState(false);
   const [isEngaged, setEngaged] = useState(false)
 
+
+  const roomTypeToImage = {
+  single: "/rooms/room1.jpg",
+  double: "/rooms/room2.jpg",
+  apartment: "/rooms/room3.jpg",
+  shared: "/rooms/room4.jpeg",
+};
+
+
   useEffect(() => {
     const isRequest = async () => {
       try {
@@ -136,7 +145,8 @@ const ViewRoomDetails = () => {
       {/* Big Image */}
       <div className="mb-6">
         <img
-          src={roomDetails.photos?.[0] || "https://via.placeholder.com/800"}
+       src={roomTypeToImage[roomDetails.roomType.toLowerCase()] || "/rooms/room1.jpg"}
+
           alt="Room"
           className="w-full h-64 object-cover rounded-md shadow-md"
         />
