@@ -48,7 +48,7 @@ const Navbar = () => {
             onClick={() => handleNavigation("/")}
             className="focus:outline-none hover:text-blue-200 transition duration-200"
           >
-            EastRent
+            EasyRent
           </button>
         </div>
 
