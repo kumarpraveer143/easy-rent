@@ -6,6 +6,7 @@ import NoRoomsFound from "./NoRoomsFound";
 import { API_URL } from "../config";
 import Loading from "../components/UI/Loading";
 
+
 const FindRooms = () => {
   const [rooms, setRooms] = useState([]);
   const [filteredRooms, setFilteredRooms] = useState([]);
@@ -44,6 +45,14 @@ const FindRooms = () => {
       setFilteredRooms(filtered);
     }
   };
+
+  const roomTypeToImage = {
+  'single': '/rooms/room1.jpg',
+  'studio': '/rooms/room2.jpg',
+  'apartment': '/rooms/room3.jpg',
+  'shared': '/rooms/room4.jpeg',
+
+};
 
   const handleLoadMore = () => {
     setLimit((prevLimit) => prevLimit + 25);
@@ -95,15 +104,14 @@ const FindRooms = () => {
           <>
             <div className="m-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {filteredRooms.slice(0, limit).map((room) => (
+                
                 <div
                   key={room._id}
                   className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
                 >
                   <div className="relative">
                     <img
-                      src={
-                        room.photos?.[0] || "https://via.placeholder.com/150"
-                      }
+                    src={roomTypeToImage[room.roomType.toLowerCase()] || '/rooms/room1.jpeg'}
                       alt="Room"
                       className="w-full h-48 object-cover"
                     />

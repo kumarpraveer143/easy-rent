@@ -33,7 +33,7 @@ const Login = () => {
         let user = response.data.user;
         delete user.password;
         localStorage.setItem("user", JSON.stringify(user));
-        navigate("/"); // Redirect to the homepage after successful login
+        navigate("/dashboard"); // Redirect to the homepage after successful login
       }
     } catch (error) {
       // Handle error response from the server

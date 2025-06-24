@@ -53,7 +53,7 @@ const Home = () => {
               </p>
               <div className="mt-10 sm:flex">
                 <div className="rounded-md shadow">
-                  <Link to="/findRooms" className="z-1000 w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 md:py-4 md:text-lg md:px-10 ">
+                  <Link to="/uploadrooms" className="z-1000 w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 md:py-4 md:text-lg md:px-10 ">
                     List Property
                   </Link>
                 </div>
