@@ -29,7 +29,7 @@ const Developer = () => {
           <p className="text-indigo-600 text-lg font-semibold mb-4">
             Full-Stack Developer
           </p>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 mb-6 w-3/4 m-auto lg:m-0 lg:mb-6">
             Hi, I’m a passionate developer currently pursuing MCA at NIT Bhopal.
             I am dedicated to building intuitive applications and solving
             real-world problems with innovative solutions. Let's connect and
@@ -37,7 +37,7 @@ const Developer = () => {
           </p>
           <div className="flex justify-center lg:justify-start space-x-6">
             <a
-              href="https://github.com/KumarPraveer"
+              href="https://github.com/kumarpraveer143"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-800 hover:text-gray-600 transition-colors"
