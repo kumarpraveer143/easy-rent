@@ -254,31 +254,34 @@ const Profile = () => {
             <>
               <button
                 onClick={() => setIsEditing(false)}
-                className="px-5 py-2 bg-gray-500 text-white font-medium rounded-full shadow-md hover:bg-gray-600 transition duration-200"
+                className="px-3 py-1 text-sm sm:px-5 sm:py-2 sm:text-base bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-500 transition duration-200"
               >
                 Cancel
               </button>
+
               <button
                 onClick={handleSave}
-                className="px-5 py-2 bg-blue-600 text-white font-medium rounded-full shadow-md hover:bg-blue-700 transition duration-200"
+                className="px-3 py-1 text-sm sm:px-5 sm:py-2 sm:text-base bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-200"
               >
                 Save
               </button>
             </>
           ) : (
-            <button
-              onClick={() => setIsEditing(true)}
-              className="px-3 py-1 text-sm sm:px-5 sm:py-2 sm:text-base bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-200"
-            >
-              Edit Profile
-            </button>
+            <>
+              <button
+                onClick={() => setIsEditing(true)}
+                className="px-3 py-1 text-sm sm:px-5 sm:py-2 sm:text-base bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-200"
+              >
+                Edit Profile
+              </button>
+              <Link
+                to="/dashboard"
+                className="px-3 py-1 text-sm sm:px-5 sm:py-2 sm:text-base bg-white text-blue-600 font-medium rounded-full shadow-md hover:bg-blue-50 transition duration-200"
+              >
+                Back to Dashboard
+              </Link>
+            </>
           )}
-          <Link
-            to="/dashboard"
-            className="px-3 py-1 text-sm sm:px-5 sm:py-2 sm:text-base bg-white text-blue-600 font-medium rounded-full shadow-md hover:bg-blue-50 transition duration-200"
-          >
-            Back to Dashboard
-          </Link>
         </div>
       </div>
     </div>
