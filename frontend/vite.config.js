@@ -10,8 +10,9 @@ export default defineConfig({
       includeAssets: ["favicon.svg", "robots.txt", "apple-touch-icon.png"],
       manifest: {
         name: "Renters",
-        short_name: "App",
-        description: "Your app description here",
+        short_name: "Renters",
+        description:
+          "Easyeasy is a smart rental management platform where landowners can easily list and manage their rooms, and renters can search by city, explore listings, and apply for bookings. It features secure payment tracking, profile and room editing, and a smooth, responsive user experience.",
         start_url: "/",
         display: "standalone",
         background_color: "#ffffff",
