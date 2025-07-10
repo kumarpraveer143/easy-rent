@@ -78,7 +78,9 @@ const Profile = () => {
           {/* Display user details */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <div>
-              <label className="text-gray-600 font-semibold text-sm sm:text-base">Name:</label>
+              <label className="text-gray-600 font-semibold text-sm sm:text-base">
+                Name:
+              </label>
               {isEditing ? (
                 <input
                   type="text"
@@ -88,15 +90,23 @@ const Profile = () => {
                   className="block w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                 />
               ) : (
-                <p className="mt-1 text-gray-800 text-sm sm:text-base">{user.name}</p>
+                <p className="mt-1 text-gray-800 text-sm sm:text-base">
+                  {user.name}
+                </p>
               )}
             </div>
             <div>
-              <label className="text-gray-600 font-semibold text-sm sm:text-base">Email:</label>
-              <p className="mt-1 text-gray-800 text-sm sm:text-base">{user.email}</p>
+              <label className="text-gray-600 font-semibold text-sm sm:text-base">
+                Email:
+              </label>
+              <p className="mt-1 text-gray-800 text-sm sm:text-base">
+                {user.email}
+              </p>
             </div>
             <div>
-              <label className="text-gray-600 font-semibold text-sm sm:text-base">Phone Number:</label>
+              <label className="text-gray-600 font-semibold text-sm sm:text-base">
+                Phone Number:
+              </label>
               {isEditing ? (
                 <input
                   type="text"
@@ -106,11 +116,15 @@ const Profile = () => {
                   className="block w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                 />
               ) : (
-                <p className="mt-1 text-gray-800 text-sm sm:text-base">{user.phoneNumber}</p>
+                <p className="mt-1 text-gray-800 text-sm sm:text-base">
+                  {user.phoneNumber}
+                </p>
               )}
             </div>
             <div>
-              <label className="text-gray-600 font-semibold text-sm sm:text-base">Date of Birth:</label>
+              <label className="text-gray-600 font-semibold text-sm sm:text-base">
+                Date of Birth:
+              </label>
               {isEditing ? (
                 <input
                   type="date"
@@ -129,11 +143,15 @@ const Profile = () => {
 
           {/* Address */}
           <div>
-            <label className="text-gray-600 font-semibold text-sm sm:text-base">Address:</label>
+            <label className="text-gray-600 font-semibold text-sm sm:text-base">
+              Address:
+            </label>
             {isEditing ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-1">
                 <div>
-                  <label className="text-gray-600 font-semibold text-sm sm:text-base">Street:</label>
+                  <label className="text-gray-600 font-semibold text-sm sm:text-base">
+                    Street:
+                  </label>
                   <input
                     type="text"
                     name="street"
@@ -143,7 +161,9 @@ const Profile = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-gray-600 font-semibold text-sm sm:text-base">City:</label>
+                  <label className="text-gray-600 font-semibold text-sm sm:text-base">
+                    City:
+                  </label>
                   <input
                     type="text"
                     name="city"
@@ -153,7 +173,9 @@ const Profile = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-gray-600 font-semibold text-sm sm:text-base">State:</label>
+                  <label className="text-gray-600 font-semibold text-sm sm:text-base">
+                    State:
+                  </label>
                   <input
                     type="text"
                     name="state"
@@ -163,7 +185,9 @@ const Profile = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-gray-600 font-semibold text-sm sm:text-base">Zip Code:</label>
+                  <label className="text-gray-600 font-semibold text-sm sm:text-base">
+                    Zip Code:
+                  </label>
                   <input
                     type="text"
                     name="zipCode"
@@ -175,7 +199,8 @@ const Profile = () => {
               </div>
             ) : (
               <p className="mt-1 text-gray-800 text-sm sm:text-base">
-                {user.homeAddress?.street}, {user.homeAddress?.city}, {user.homeAddress?.state} - {user.homeAddress?.zipCode}
+                {user.homeAddress?.street}, {user.homeAddress?.city},{" "}
+                {user.homeAddress?.state} - {user.homeAddress?.zipCode}
               </p>
             )}
           </div>
@@ -183,7 +208,9 @@ const Profile = () => {
           {/* House Name (for landowners) */}
           {user?.userType === "landowner" && (
             <div>
-              <label className="text-gray-600 font-semibold text-sm sm:text-base">House Name:</label>
+              <label className="text-gray-600 font-semibold text-sm sm:text-base">
+                House Name:
+              </label>
               {isEditing ? (
                 <input
                   type="text"
@@ -202,7 +229,9 @@ const Profile = () => {
 
           {/* Aadhar Number */}
           <div>
-            <label className="text-gray-600 font-semibold text-sm sm:text-base">Aadhar Number:</label>
+            <label className="text-gray-600 font-semibold text-sm sm:text-base">
+              Aadhar Number:
+            </label>
             {isEditing ? (
               <input
                 type="text"
@@ -239,14 +268,14 @@ const Profile = () => {
           ) : (
             <button
               onClick={() => setIsEditing(true)}
-              className="px-5 py-2 bg-blue-600 text-whiteaped-full shadow-md hover:bg-blue-700 transition duration-200 rounded-lg text-white"
+              className="px-3 py-1 text-sm sm:px-5 sm:py-2 sm:text-base bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-200"
             >
               Edit Profile
             </button>
           )}
           <Link
             to="/dashboard"
-            className="px-5 py-2 bg-white text-blue-600 font-medium rounded-full shadow-md hover:bg-blue-50 transition duration-200"
+            className="px-3 py-1 text-sm sm:px-5 sm:py-2 sm:text-base bg-white text-blue-600 font-medium rounded-full shadow-md hover:bg-blue-50 transition duration-200"
           >
             Back to Dashboard
           </Link>
