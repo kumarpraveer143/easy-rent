@@ -9,7 +9,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["favicon.svg", "robots.txt", "apple-touch-icon.png"],
       manifest: {
-        name: "Your App Name",
+        name: "Renters",
         short_name: "App",
         description: "Your app description here",
         start_url: "/",
