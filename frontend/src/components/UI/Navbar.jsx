@@ -150,6 +150,14 @@ const Navbar = () => {
           >
             About
           </Link>
+
+          <Link
+            className="text-white hover:text-blue-200 transition duration-200 font-medium"
+            onClick={() => handleNavigation("/developer")}
+          >
+            Developer
+          </Link>
+
           <Link
             onClick={() => handleNavigation("/contact")}
             className="block px-4 py-3 text-white hover:bg-blue-700 text-center font-medium"
