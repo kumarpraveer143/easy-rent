@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-import HomeImage from "../../public/images/homeImage.png"
+import HomeImage from "/images/homeImage.png"
 import {Link} from"react-router-dom"
 import { useNavigate } from 'react-router-dom';
 
