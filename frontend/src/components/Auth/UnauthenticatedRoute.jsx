@@ -1,7 +1,13 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 const UnauthenticatedRoute = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  return !user ? <Outlet /> : <Navigate to="/" />;
+  const user = localStorage.getItem("user");
+
+  if (user) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  return <Outlet />;
 };
+
 export default UnauthenticatedRoute;

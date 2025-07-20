@@ -13,7 +13,7 @@ const landOwnerAuth = async (req, res, next) => {
     user = await userRepository.getUserById(id);
     req.userId = user._id.toString();
   } catch (err) {
-    return res.status(404).send("Page not Found!");
+    return res.status(401).send("Authentication failed!");
   }
   if (user.userType !== "landowner") {
     return res.status(401).send("Only landowner can access this route");

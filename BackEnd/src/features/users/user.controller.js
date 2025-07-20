@@ -96,13 +96,13 @@ export default class UserController {
       return res
         .cookie("token", jwtToken, {
           httpOnly: true,
-          secure: true,
-          sameSite: "None",
+          secure: process.env.NODE_ENV === "production",
+          sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
         })
         .cookie("userId", user._id, {
           httpOnly: true,
-          secure: true,
-          sameSite: "None",
+          secure: process.env.NODE_ENV === "production",
+          sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
         })
         .status(200)
         .json({ success: true, user: user });
@@ -118,9 +118,21 @@ export default class UserController {
 
   //user logout controller
   async logout(req, res) {
-    res.clearCookie("token");
-    res.clearCookie("userData");
-    res.clearCookie("userId");
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    });
+    res.clearCookie("userData", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    });
+    res.clearCookie("userId", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    });
     return res
       .status(200)
       .json({ success: true, message: "Logout Successfully!" });

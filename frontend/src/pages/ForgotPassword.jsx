@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import { API_URL } from "../config";
+
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const ForgotPassword = () => {
     const email = e.target.email.value;
 
     try {
-      const response = await axios.post(`${API_URL}/users/password/forget`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/password/forget`, {
         email,
       });
       toast.success("Reset link is sent to your email!");

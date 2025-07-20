@@ -13,7 +13,7 @@ export default class UserRepository {
 
   //find user by userId
   async getUserById(id) {
-    const user = userModel.findOne({ _id: id });
+    const user = await userModel.findOne({ _id: id });
     return user;
   }
 

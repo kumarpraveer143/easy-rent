@@ -63,25 +63,23 @@ const App = () => {
     <BrowserRouter>
       <Suspense
         fallback={
-          <div>
+          <div className="font-sans bg-gray-900 text-white min-h-screen flex items-center justify-center">
             <Loading />
           </div>
         }
       >
         <Routes>
           {/* Open Routes for all */}
-
           <Route element={<Layout />}>
             {/* Public routes */}
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/developer" element={<Developer />} />
-              <Route path="/findrooms" element={<FindRooms />} />
+            <Route path="/findrooms" element={<FindRooms />} />
 
             <Route path="/reset/:token" element={<Reset />} />
             <Route path="/forget-password" element={<ForgotPassword />} />
-            <Route path="/findrooms" element={<FindRooms />} />
 
             {/* Unauthorized Route */}
             <Route element={<UnauthenticatedRoute />}>
@@ -89,44 +87,44 @@ const App = () => {
               <Route path="/login" element={<Login />} />
             </Route>
 
-            {/* <Route element={<AuthenticatedUser />}> */}
-            {/* Routes for only Renters */}
-            <Route element={<RentersAuth />}>
-              <Route path="/rentersMyRoom" element={<RenterMyRoom />} />
-              <Route
-                path="/viewRoomsDetails/:id"
-                element={<ViewRoomDetails />}
-              />
-              <Route
-                path="/renter-history"
-                element={<RenterHistoryDetails />}
-              />
-              <Route path="/favouriteRooms" element={<FavouriteRoom />} />
-            </Route>
+            <Route element={<AuthenticatedUser />}>
+              {/* Routes for only Renters */}
+              <Route element={<RentersAuth />}>
+                <Route path="/rentersMyRoom" element={<RenterMyRoom />} />
+                <Route
+                  path="/viewRoomsDetails/:id"
+                  element={<ViewRoomDetails />}
+                />
+                <Route
+                  path="/renter-history"
+                  element={<RenterHistoryDetails />}
+                />
+                <Route path="/favouriteRooms" element={<FavouriteRoom />} />
+              </Route>
 
-            {/* Routes for only landowners */}
-            <Route element={<LandownerAuth />}>
-              <Route path="payment-history" element={<PaymentHistory />} />
-              <Route path="/uploadrooms" element={<UploadRooms />} />
-              <Route path="/landowner-rooms" element={<LandOwnerRooms />} />
-              <Route path="/my-renters" element={<MyRenters />} />
-              <Route path="/add-rent/:relationId" element={<AddRent />} />
-              <Route path="/no-history" element={<NoHistory />} />
-              <Route
-                path="check-history/:relationId"
-                element={<CheckHistory />}
-              />
-              <Route path="/incoming-request" element={<IncommingRequest />} />
-              <Route path="/archieved-renters" element={<ArchievedRenters />} />
-              <Route path="/no-renters" element={<NoRenters />} />
-            </Route>
+              {/* Routes for only landowners */}
+              <Route element={<LandownerAuth />}>
+                <Route path="/payment-history" element={<PaymentHistory />} />
+                <Route path="/uploadrooms" element={<UploadRooms />} />
+                <Route path="/landowner-rooms" element={<LandOwnerRooms />} />
+                <Route path="/my-renters" element={<MyRenters />} />
+                <Route path="/add-rent/:relationId" element={<AddRent />} />
+                <Route path="/no-history" element={<NoHistory />} />
+                <Route
+                  path="/check-history/:relationId"
+                  element={<CheckHistory />}
+                />
+                <Route path="/incoming-request" element={<IncommingRequest />} />
+                <Route path="/archieved-renters" element={<ArchievedRenters />} />
+                <Route path="/no-renters" element={<NoRenters />} />
+              </Route>
 
-            {/* Protected Routes for all users  */}
-            <Route element={<ProtectedRoute />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/profile" element={<Profile />} />
+              {/* Protected Routes for all users  */}
+              <Route element={<ProtectedRoute />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/profile" element={<Profile />} />
+              </Route>
             </Route>
-            {/* </Route> */}
 
             <Route path="/pagenotfound" element={<PageNotFound />} />
             <Route path="/*" element={<PageNotFound />} />
